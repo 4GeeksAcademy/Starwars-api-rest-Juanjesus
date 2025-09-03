@@ -10,6 +10,8 @@ from utils import APIException, generate_sitemap
 from admin import setup_admin
 from models import db, User
 #from models import Person
+from routes import api
+
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -49,3 +51,5 @@ def handle_hello():
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
     app.run(host='0.0.0.0', port=PORT, debug=False)
+
+app.register_blueprint(api,url_prefix="/api")
